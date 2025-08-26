@@ -1,0 +1,27 @@
+#contsec{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#contlipage{
+    border-bottom: 1px solid #000000;
+    text-decoration: none;
+    list-style: none;
+    text-align: left;
+    width: 150px;
+    margin-right: 75px;
+}
+#phonecont{
+    border-bottom: 1px solid #000000;
+    text-decoration: none;
+    list-style: none;
+    text-align: left;
+    width: 220px;
+}
+#storeopen{
+    border-bottom: 1px solid #000000;
+    text-decoration: none;
+    list-style: none;
+    text-align: left;
+    width: 220px;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Store</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/homemob.css")}}">
+    <link rel="icon" href="{{ url_for('static', filename="images/spstlogo.jpg")}}">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <!-- <div class="hbox"> -->
+                <!-- <div> -->
+                    <img id="mlogo" src="{{ url_for('static', filename="images/spstlogo.jpg")}}" alt="Site Logo" height="30" width="50">
+                <!-- </div> -->
+                <!-- <div class="shname"> -->
+                    <h1>Tools Store</h1>
+                <!-- </div> -->
+                <div class="regbutt">
+                    <button id="regBtn">Registration</button>
+                                <form id="regForm" novalidate>
+                                        <button id="closeBtnReg">X</button>
+                                        <label for="emailReg">User email</label>
+                                        <input type="email" id="emailReg" name="email" required><br>
+                                        <label>User password</label>
+                                        <input type="password" id="passwordReg" required><br>
+                                    <div id="subButtReg">
+                                        <button type="submit" id="subRegBtn" value="Submit">Submit</button>
+                                    </div>
+                                    <div id="errorstatus"></div>
+                                </form>
+                    <button id="logBtn">Login</button>
+                                <form id="logForm" novalidate>
+                                        <button id="closeBtnLog">X</button>
+                                        <label for="emailLog">User name</label>
+                                        <input type="email" id="emailLog" required><br>
+                                        <label>User password</label>
+                                        <input type="password" id="passwordLog" required><br>
+                                    <div id="subButtLog">
+                                        <button type="submit" id="subLogBtn" value="Submit">Submit</button>
+                                    </div>
+                                    <div id="emailErrorStatus"></div>
+                                </form>
+                    <button id="bask">Basket</button>
+                        <div id="baskPrev">
+                            <button id="closeBaskPrev">X</button>
+                                <p>
+                                    Items: <br>
+                                    Price: <br>
+                                    Total: <br>
+                                </p>
+                        </div>
+                </div>
+            <!-- </div> -->
+        </header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index')}}"> Home </a></li>
+                <li><a href="{{ url_for('tools')}}"> Tools </a></li>
+                <li id="contli"><a href="{{ url_for('contact')}}"> Contact us </a></li>
+                <li id="delivli"><a href="{{ url_for('delivery')}}"> Delivery </a></li>
+            </ul>
+            <div class="soclink">
+                <ul>
+                    <li><a href="https://www.facebook.com/"><img src="{{ url_for('static', filename="images/fbklink.png")}}" alt="Facebook" height="30" width="30"></a></li>
+                    <li><a href="https://www.instagram.com/"><img src="{{ url_for('static', filename="images/instlink.png")}}" alt="Instagram" height="25" width="25"></a></li>
+                    <li><a href="https://twitter.com/"><img src="{{ url_for('static', filename="images/xlink.png")}}" alt="X" height="30" width="30"></a></li>
+                    <li><a href="https://www.youtube.com/"><img src="{{ url_for('static', filename="images/youbelink.png")}}" alt="Youtube" height="25" width="25"></a></li>
+                </ul>
+            </div>
+        </nav>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+        <aside>
+            <article class="martic">
+                <h4 id="asHead">Best latest offers</h4>
+                <article class="bsell1" id="battery">
+                    <h5>Batteries</h5>
+                    <img src="{{ url_for('static', filename="images/slbattery1.jpg")}}" alt="Sale Battery" height="50" width="100">
+                    <div id="windDet1">
+                        <strong>Bosch battery</strong> 
+                            <p>
+                                Proudct details<br>
+                                Model: GBA<br>
+                                Voltage: 18v 5Ah<br>
+                                Price: 70€<br>
+                            </p>
+                    </div>
+                </article>
+                <article class="bsell2" id="drill">
+                    <h5>Drill</h5>
+                    <img src="{{ url_for('static', filename="images/sldrill1.jpg")}}" alt="Sale Drill" height="50" width="100">
+                    <div id="windDet1">
+                        <strong>Hitachi drill</strong> 
+                            <p>
+                                Proudct details<br>
+                                Model: BSL<br>
+                                Voltage: 240v<br>
+                                Price: 150€<br>
+                            </p>
+                    </div>
+                </article>
+                <article class="bsell3" id="skillsaw">
+                    <h5>Skill Saw</h5>
+                    <img src="{{ url_for('static', filename="images/slskillsaw1.jpg")}}" alt="Sale Saw" height="50" width="100">
+                    <div id="windDet1">
+                        <strong>Makita skill saw</strong> 
+                            <p>
+                                Proudct details<br>
+                                Model: BMS<br>
+                                Voltage: 110v<br>
+                                Price: 250€<br>
+                            </p>
+                    </div>
+                </article>
+                <article class="bsell4" id="cordlessdrill">
+                    <h5>Cordless Drill</h5>
+                    <img src="{{ url_for('static', filename="images/slcdrill1.jpg")}}" alt="Sale Cordles Drill" height="50" width="100">
+                    <div id="windDet1">
+                        <strong>DeWalt cordless drill</strong> 
+                            <p>
+                                Proudct details<br>
+                                Model: XR<br>
+                                Voltage: 18v 5Ah<br>
+                                Price: 200€<br>
+                            </p>
+                    </div>
+                </article>
+            </article>
+        </aside>
+    <footer>Copyright &copy; 2025 Tools Store - All rights reserved</footer>
+    <script src="{{ url_for('static', filename="js/registr.js")}}"></script>
+    <script src="{{ url_for('static', filename="js/aside.js")}}"></script>
+</div>
+</body>
+</html>

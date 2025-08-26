@@ -1,0 +1,111 @@
+         /* Medium screen size style configuration */
+        @media screen and (min-width: 768px){
+
+#wrapper{
+    min-width: 90%;
+}
+header{
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+#mlogo{
+    min-width: 80px;
+    min-height: 40px;
+}
+h1{
+    width: 70%;
+    height: 50%;
+    font-size: 3rem;
+}
+.regbutt{
+    display: none;
+}
+nav{
+    grid-column: 1 / 3;
+    grid-row: 2;
+    justify-content: space-between;
+}
+.soclink{
+    display: flex;
+}
+main{
+    grid-column: 2 / 3;
+    grid-row: 3;
+    min-width: 500px;
+}
+#sec1pic{
+    display: flex;
+    width: 500px;
+    column-gap: 10px;
+    margin-left: 15px;
+}
+#sec2pic{
+    display: flex;
+    width: 500px;
+    column-gap: 10px;
+    margin-left: 15px;
+}
+#sec3pic{
+    display: flex;
+    width: 500px;
+    column-gap: 10px;
+    margin-left: 15px;
+}
+#sec4pic{
+    display: flex;
+    width: 500px;
+    column-gap: 10px;
+    margin-left: 15px;
+}
+#sec5pic{
+    display: flex;
+    height: 220px;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 10px;
+    margin-left: 15px;
+}
+#sec5pic img{
+    max-width: 150px;
+    max-height: 100px;
+}
+#sec6pic{
+    display: flex;
+    height: 220px;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 10px;
+    margin-left: 15px;
+}
+#sec6pic img{
+    max-width: 150px;
+    max-height: 100px;
+}
+#sec7pic{
+    display: flex;
+    width: 500px;
+    column-gap: 10px;
+    justify-content: center;
+    margin-left: 10px;
+}
+aside{
+    grid-column: 1 / 2;
+    grid-row: 3;
+}
+.bsell1{
+    min-width: 150px;
+}
+.bsell2{
+    min-width: 150px;
+}
+.bsell3{
+    min-width: 150px;
+}
+.bsell4{
+    min-width: 150px;
+}
+footer{
+    grid-column: 1 / 3;
+    grid-row: 4;
+}
+}
