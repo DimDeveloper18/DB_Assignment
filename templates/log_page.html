@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1>{% set title = "Login" %}</h1>
+<form id="logForm" action="{{ url_for(login_form)}}" methods="POST">
+    <button id="closeBtnLog">X</button>
+    <label for="emailLog">User name</label>
+    <input type="email" id="emailLog" required><br>
+    <label>User password</label>
+    <input type="password" id="passwordLog" required><br>
+<div id="subButtLog">
+    <button type="submit" id="subLogBtn" value="Submit">Submit</button>
+</div>
+<div id="emailErrorStatus">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+</form>
+{% enblock %}

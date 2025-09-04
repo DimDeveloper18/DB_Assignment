@@ -13,30 +13,10 @@
                 <img id="mlogo" src="{{ url_for('static', filename="images/spstlogo.jpg")}}" alt="Site Logo" height="30" width="50">
                 <h1>Tools Store</h1>
                     <div class="regbutt">
-                        <button id="regBtn">Registration</button>
-                                    <form id="regForm" novalidate>
-                                            <button id="closeBtnReg">X</button>
-                                            <label for="emailReg">User email</label>
-                                            <input type="email" id="emailReg" name="email" required><br>
-                                            <label>User password</label>
-                                            <input type="password" id="passwordReg" required><br>
-                                        <div id="subButtReg">
-                                            <button type="submit" id="subRegBtn" value="Submit">Submit</button>
-                                        </div>
-                                        <div id="errorstatus"></div>
-                                    </form>
-                        <button id="logBtn">Login</button>
-                                    <form id="logForm" novalidate>
-                                            <button id="closeBtnLog">X</button>
-                                            <label for="emailLog">User name</label>
-                                            <input type="email" id="emailLog" required><br>
-                                            <label>User password</label>
-                                            <input type="password" id="passwordLog" required><br>
-                                        <div id="subButtLog">
-                                            <button type="submit" id="subLogBtn" value="Submit">Submit</button>
-                                        </div>
-                                        <div id="emailErrorStatus"></div>
-                                    </form>
+                        <button id="regBtn"><a href="{{ url_for('reg_page') }}"></a>Registration</button>
+                                    
+                        <button id="logBtn"><a href="{{ url_for('log_page') }}"></a>Login</button>
+                                    
                         <button id="bask">Basket</button>
                             <div id="baskPrev">
                                 <button id="closeBaskPrev">X</button>

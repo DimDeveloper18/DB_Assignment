@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1>{% set title = "Registration" %}</h1>
+<form id="regForm" action="{{ url_for(registr_form)}}" methods="POST">
+    <button id="closeBtnReg">X</button>
+    <label for="emailReg">User email</label>
+    <input type="email" id="emailReg" name="email" required><br>
+    <label>User password</label>
+    <input type="password" id="passwordReg" required><br>
+<div id="subButtReg">
+    <button type="submit" id="subRegBtn" value="Submit">Submit</button>
+</div>
+<div id="errorstatus">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+</form>
+{% enblock %}
