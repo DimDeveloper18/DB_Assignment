@@ -13,10 +13,8 @@
                 <img id="mlogo" src="{{ url_for('static', filename="images/spstlogo.jpg")}}" alt="Site Logo" height="30" width="50">
                 <h1>Tools Store</h1>
                     <div class="regbutt">
-                        <button id="regBtn"><a href="{{ url_for('reg_page') }}"></a>Registration</button>
-                                    
-                        <button id="logBtn"><a href="{{ url_for('log_page') }}"></a>Login</button>
-                                    
+                        <button id="regBtn"><a href="{{ url_for('register_page') }}">Registration</a></button>
+                        <button id="logBtn"><a href="{{ url_for('login_page') }}">Login</a></button>
                         <button id="bask">Basket</button>
                             <div id="baskPrev">
                                 <button id="closeBaskPrev">X</button>
@@ -106,8 +104,8 @@
             </article>
         </aside>
     <footer>Copyright &copy; 2025 Tools Store - All rights reserved</footer>
-    <script src="{{ url_for('static', filename="js/registr.js")}}"></script>
-    <script src="{{ url_for('static', filename="js/aside.js")}}"></script>
 </div>
 </body>
+    <script src="{{ url_for('static', filename="js/registr.js")}}"></script>
+    <script src="{{ url_for('static', filename="js/aside.js")}}"></script>
 </html>
