@@ -16,10 +16,11 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 login_manager = LoginManager(app)
-login_manager.login_view = "log_page"
+login_manager.login_view = "login_page"
 
 with app.app_context():
     dbase.init_app(app)
+    dbase.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -91,3 +92,6 @@ def contact():
 @app.route("/delivery")
 def delivery():
     return render_template("delivery.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
