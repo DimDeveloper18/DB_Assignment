@@ -8,7 +8,7 @@ from flask_login import (
     current_user,
 )
 
-from models import Customer, dbase
+from models import Customer, CustomerComment, dbase
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -81,13 +81,25 @@ def logout_form():
     flash("Log out successfull.")
     return redirect(url_for("index"))
 
-@app.route("/tools.html")
+@app.route("/tools")
 def tools():
     return render_template("tools.html")
 
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
+@app.route("/contact", methods=["GET"])
+def contact_page():
+    return render_template("contact.html", comments=CustomerComment.query.all())
+
+@app.route("/contact", methods=["POST"])
+@login_required
+def comment_create():
+    comment_body = CustomerComment(
+        msgname=request.form["msgname"],
+        comment=request.form["comment"],
+        writer=current_user,
+    )
+    dbase.session.add(comment_body)
+    dbase.session.commit()
+    return redirect(url_for("contact_page"))
 
 @app.route("/delivery")
 def delivery():
