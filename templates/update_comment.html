@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form id="com_update" action="{{ url_for('insert_com', comment_id=comment_id) }}" method="POST">
+        <input type="text" name="msgname" value="{{ comment.msgname }}" required>
+        <textarea name="comment_text" required>{{ comment.comment_text }}</textarea>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
