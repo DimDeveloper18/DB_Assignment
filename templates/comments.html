@@ -1,0 +1,14 @@
+{% block main %}
+                <section id="comments">
+                    {% if current_user.is_authenticated %}
+                    <form id="com" action="{{ url_for('comment_create')}}" method="POST">
+                        <input type="text" name="msgname" placeholder="Comment name" required>
+                        <textarea name="comment_text" placeholder="Comment area" required></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                    {% else %}
+                    <p>You are not logged in ❌</p>
+                        <a href="{{ url_for('login_page') }}">Login</a>
+                    {% endif %}
+                </section>
+{% endblock %}
