@@ -25,14 +25,4 @@
                             <li>9:00 - 16:00</li>
                         </ul>
                 </section>
-                <section id="comments">
-                    {% if current_user.is_authenticated %}
-                    <form id="com" action="{{ url_for('comment_create')}}" method="POST">
-                        <input type="text" name="msgname" placeholder="Comment name" required>
-                        <textarea name="comment_text" placeholder="Comment area" required></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                    {% else %}
-                    {% endif %}
-                </section>
 {% endblock %}
