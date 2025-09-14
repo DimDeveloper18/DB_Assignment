@@ -232,7 +232,7 @@
             </table>
             <ul>
                 {% for comment in comments %}
-                    <li><a href="{{ url_for('comment_body', comment_body_id=comment_body.id) }}">{{ comment_body.msgname }}</a> </li>
+                    <li><a href="{{ url_for('comments_page', comment_id=comment.id) }}">{{ comment.msgname }}</a> </li>
                 {% endfor %}
             </ul>
         </div>
