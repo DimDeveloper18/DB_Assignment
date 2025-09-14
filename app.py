@@ -1,4 +1,5 @@
 from statistics import median, mean
+import os
 from flask import Flask, flash, render_template, request, url_for, redirect
 from flask_login import (
     LoginManager,
@@ -23,12 +24,16 @@ with app.app_context():
     dbase.create_all()
 
 @login_manager.user_loader
-def load_user(user_id):
-    return Customer.query.get(int(user_id))
+def load_user(user):
+    print(user)
+    return Customer.query.get(int(user))
+
+# def recomment(comment_body):
+#     return comment_body.writer == current_user
 
 @app.route("/")
 @app.route("/index")
-def index():
+def index_page():
     return render_template("index.html")
 
 @app.route("/reg_page", methods=["GET"])
@@ -45,6 +50,7 @@ def registr_form():
     
     user = Customer(username=username, password=password)
     dbase.session.add(user)
+    dbase.session.commit()
     login_user(user)
     flash(f"Welcome {username}!")
     return redirect(url_for("index"))
@@ -58,6 +64,7 @@ def login_form():
     username = request.form["email"]
     password = request.form["password"]
     user =  Customer.query.filter_by(username=username).first()
+    print(user)
     if not user:
         flash(f"Incorrect username. Try again!")
         return redirect(url_for("login_page"))
@@ -67,7 +74,7 @@ def login_form():
 
     login_user(user)
     flash(f"Welcome back, {username}!")
-    return redirect(url_for("index"))
+    return redirect(url_for("comments_page"))
 
 @app.route("/logout_page", methods=["GET"])
 @login_required
@@ -81,29 +88,64 @@ def logout_form():
     flash("Log out successfull.")
     return redirect(url_for("index"))
 
-@app.route("/tools")
-def tools():
-    return render_template("tools.html")
+@app.route("/tools", methods=["GET"])
+def tools_page():
+    return render_template("tools.html", comments=CustomerComment.query.all())
 
-@app.route("/contact", methods=["GET"])
+
+
+@app.route("/contact")
 def contact_page():
-    return render_template("contact.html", comments=CustomerComment.query.all())
+    return render_template("contact.html")
 
-@app.route("/contact", methods=["POST"])
+@app.route("/comments", methods=["GET"])
+@login_required
+def comments_page():
+    return render_template("comments.html")
+
+@app.route("/comments", methods=["POST"])
 @login_required
 def comment_create():
-    comment_body = CustomerComment(
+    if request.method == "POST":
+        comment_body = CustomerComment(
         msgname=request.form["msgname"],
-        comment=request.form["comment"],
-        writer=current_user,
+        comment=request.form["comment_text"],
+        writer=current_user
     )
-    dbase.session.add(comment_body)
-    dbase.session.commit()
-    return redirect(url_for("contact_page"))
+        print(comment_body)
+        dbase.session.add(comment_body)
+        dbase.session.commit()
+        return redirect(url_for("tools"))
+    flash("Commit.")
+    return render_template(url_for("coments_page"))
+
+# @app.route("/update_comment/<int:comment_id>", method=["GET"])
+# @login_required
+# def upcom_page(comment_id):
+#     comment_body = CustomerComment.query.get_or_404(comment_id)
+#     if not recomment(comment_body):
+#         flash(f"Comment update allowed to owner only")
+#         return redirect(url_for("comment_body", comment_id=comment.id))
+    
+#     return render_template("updat_comment.html" comment_body=comment_body)
+
+# @app.route("/update_comment/<int:comment_id>", method=["POST"])
+# @login_required
+# def recomment(comment_id):
+#     comment_body = CustomerComment.query.get_or_404(comment_id)
+#     if not recomment(comment_body):
+#         flash(f"Comment update allowed to owner only")
+#         return redirect(url_for("comment_body", comment_id=comment.id))
+#     comment_body.msgname = request.form["msgname"]
+#     comment_body.comment = request.form["comment"]
+#     dbase.session.commit()
+#     return redirect(url_for("comment_body", comment_id=comment.id))
 
 @app.route("/delivery")
-def delivery():
+def delivery_page():
     return render_template("delivery.html")
 
 if __name__ == "__main__":
+    if not os.path.exists("database.db"):
+        dbase.create_all()
     app.run(debug=True)
