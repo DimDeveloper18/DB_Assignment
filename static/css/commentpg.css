@@ -1,0 +1,38 @@
+                            /* Comments page styles */
+@media screen and (min-width: 320px){
+
+#com{
+    background-color: #dddddd;
+    border: 3px solid #000000;
+    min-width: 280px;
+    min-height: 250px;
+    text-align: center;
+    align-content: center;
+    display: grid;
+    gap: 15px;
+    padding: 5px;
+}
+textarea{
+    min-height: 150px;
+    border: 1px solid #000000;
+}
+#comresult{
+    background-color: #dddddd;
+    border: 3px solid #000000;
+    min-width: 280px;
+    min-height: 250px;
+    text-align: center;
+    align-content: center;
+    display: grid;
+    gap: 15px;
+    padding: 5px;
+    margin-top: 15px;
+}
+#comresult, ul{
+    list-style-type: none;
+    padding: 0px;
+}
+#comresult, li{
+    min-width: 50px;
+}
+}
