@@ -24,6 +24,9 @@
                                         Total: <br>
                                     </p>
                             </div>
+                        {% if current_user.is_authenticated %}
+                        <button id="logoutbtn"><a href="{{ url_for('logout') }}">Logout</a> </button>
+                        {% endif %}
                     </div>
         </header>
         <nav>
