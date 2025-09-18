@@ -6,6 +6,7 @@
 @import url("aside.css");
 @import url("delivery.css");
 @import url("toolsjs.css");
+@import url("commentpg.css");
 
                     /* Mobile screen size style configuration */
 
@@ -32,6 +33,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     position: sticky;
+    min-height: 100px;
 }
 h1{
     margin-top: 3px;
