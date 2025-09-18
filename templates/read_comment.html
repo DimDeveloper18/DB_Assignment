@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block main %}
+    <dl>
+        <dt>{{ comment.writer.username }}</dt>
+        <dd>{{ comment.msgname, comment.comment }}</dd>
+        {% if recomment %}
+            <a href="{{ url_for('upcom_page', comment_id=comment.id) }}">Update Comment</a>
+        {% endif %}
+    </dl>
+{% endblock %}
