@@ -45,13 +45,41 @@ textarea{
 #comresult li:hover{
     border: 3px solid #d14d4d;
 }
+
+                            /* Read page comments */
+
+#readcomform{
+    background-color: #dddddd;
+    border: 3px solid #000000;
+    margin-top: 15px;
+    width: 280px;
+    display: grid;
+    gap: 20px;
+}
+#readcomform dt{
+    background-color: #444;
+    color: #ffffff;
+}
+#readcomform a{
+    background-color: #ffffff;
+    color: #d72d2d;
+}
 }
 
                             /* Medium screen size styles */
 
 @media screen and (min-width: 768px){
 
+                            /*  Tools page comments */
+
 #comresult{
     min-width: 500px;
+}
+
+                            /* Read page comments */
+
+#readcomform{
+    width: 500px;
+    height: 250px;
 }
 }
