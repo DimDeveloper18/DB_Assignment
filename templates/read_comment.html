@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block main %}
-    <dl>
+    <dl id="readcomform">
         <dt>{{ comment.writer.username }}</dt>
         <dd>{{ comment.msgname, comment.comment }}</dd>
         {% if recomment %}
