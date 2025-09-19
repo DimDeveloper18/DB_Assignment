@@ -64,6 +64,33 @@ textarea{
     background-color: #ffffff;
     color: #d72d2d;
 }
+
+                            /* Comment update page, comment form style */
+
+#comform_update{
+    background-color: #dddddd;
+    border: 3px solid #000000;
+    margin-top: 15px;
+    min-width: 280px;
+    display: grid;
+    gap: 10px;
+}
+#comform_update input{
+    background-color: #444;
+    color: #ffffff;
+    padding: 5px;
+    font-weight: bold;
+}
+#comform_update textarea{
+    font-size: 1rem;
+}
+#comform_update button{
+    border: 2px solid #000000;
+    border-radius: 3px;
+}
+#comform_update button:hover{
+    border: 3px solid #d14d4d;
+}
 }
 
                             /* Medium screen size styles */
