@@ -15,16 +15,9 @@
                     <div class="regbutt">
                         <button id="regBtn"><a href="{{ url_for('register_page') }}">Registration</a></button>
                         <button id="logBtn"><a href="{{ url_for('login_page') }}">Login</a></button>
-                        <button id="bask">Basket</button>
-                            <div id="baskPrev">
-                                <button id="closeBaskPrev">X</button>
-                                    <p>
-                                        Items: <br>
-                                        Price: <br>
-                                        Total: <br>
-                                    </p>
-                            </div>
+                            
                         {% if current_user.is_authenticated %}
+                        <button id="bask"><a href="{{ url_for('basket_page') }}">Basket</a></button>
                         <button id="logoutbtn"><a href="{{ url_for('logout') }}">Logout</a> </button>
                         {% endif %}
                     </div>
