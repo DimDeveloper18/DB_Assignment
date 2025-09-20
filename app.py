@@ -28,8 +28,8 @@ def load_user(user):
     print(user)
     return Customer.query.get(int(user))
 
-# def recomment(comment_body):
-#     return comment_body.writer == current_user
+def recomment(comment_body):
+    return comment_body.writer == current_user
 
 @app.route("/")
 @app.route("/index")
@@ -85,14 +85,17 @@ def logout():
 @login_required
 def logout_form():
     logout_user()
-    flash("Log out successfull.")
-    return redirect(url_for("index"))
+    flash("Log out completed.")
+    return redirect(url_for("index_page"))
+
+@app.route("/basket", methods=["GET"])
+@login_required
+def basket_page():
+    return render_template("basket.html")
 
 @app.route("/tools", methods=["GET"])
 def tools_page():
     return render_template("tools.html", comments=CustomerComment.query.all())
-
-
 
 @app.route("/contact")
 def contact_page():
@@ -106,40 +109,52 @@ def comments_page():
 @app.route("/comments", methods=["POST"])
 @login_required
 def comment_create():
-    if request.method == "POST":
         comment_body = CustomerComment(
         msgname=request.form["msgname"],
         comment=request.form["comment_text"],
         writer=current_user
     )
-        print(comment_body)
         dbase.session.add(comment_body)
         dbase.session.commit()
-        return redirect(url_for("tools"))
-    flash("Commit.")
-    return render_template(url_for("coments_page"))
+        return redirect(url_for("tools_page"))
 
-# @app.route("/update_comment/<int:comment_id>", method=["GET"])
-# @login_required
-# def upcom_page(comment_id):
-#     comment_body = CustomerComment.query.get_or_404(comment_id)
-#     if not recomment(comment_body):
-#         flash(f"Comment update allowed to owner only")
-#         return redirect(url_for("comment_body", comment_id=comment.id))
+@app.route("/read_comment/<int:comment_id>")
+def view_comment(comment_id):
+    comment = CustomerComment.query.get_or_404(comment_id)
+    return render_template("read_comment.html", comment=comment, recomment=recomment(comment))
+
+@app.route("/update_comment/<int:comment_id>", methods=["GET"])
+@login_required
+def upcom_page(comment_id):
+    comment_body = CustomerComment.query.get_or_404(comment_id)
+    if not recomment(comment_body):
+        flash(f"Comment update allowed to owner only")
+        return redirect(url_for("view_comment", comment_id=comment_body.id))
     
-#     return render_template("updat_comment.html" comment_body=comment_body)
+    return render_template("update_comment.html", comment_body=comment_body)
 
-# @app.route("/update_comment/<int:comment_id>", method=["POST"])
-# @login_required
-# def recomment(comment_id):
-#     comment_body = CustomerComment.query.get_or_404(comment_id)
-#     if not recomment(comment_body):
-#         flash(f"Comment update allowed to owner only")
-#         return redirect(url_for("comment_body", comment_id=comment.id))
-#     comment_body.msgname = request.form["msgname"]
-#     comment_body.comment = request.form["comment"]
-#     dbase.session.commit()
-#     return redirect(url_for("comment_body", comment_id=comment.id))
+@app.route("/update_comment/<int:comment_id>", methods=["POST"])
+@login_required
+def update_form(comment_id):
+    comment_body = CustomerComment.query.get_or_404(comment_id)
+    if not recomment(comment_body):
+        flash(f"Comment update allowed to owner only")
+        return redirect(url_for("view_comment", comment_id=comment_body.id))
+    comment_body.msgname = request.form["msgname"]
+    comment_body.comment = request.form["comment_text"]
+    dbase.session.commit()
+    return redirect(url_for("view_comment", comment_id=comment_body.id))
+
+@app.route("/delcomment/<int:comment_id>", methods=["POST"])
+@login_required
+def delcom(comment_id):
+    comment_body = CustomerComment.query.get_or_404(comment_id)
+    if not recomment(comment_body):
+        flash(f"Sorry, only owner of the comment can delete their post.")
+        return redirect(url_for("view_comment", comment_id=comment_body.id))
+    dbase.session.delete(comment_body)
+    dbase.session.commit()
+    return redirect(url_for("tools_page"))
 
 @app.route("/delivery")
 def delivery_page():
