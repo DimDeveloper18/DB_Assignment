@@ -22,3 +22,18 @@ class CustomerComment(dbase.Model):
 
     def __str__(self):
         return f'"{self.msgname}" by {self.writer.username}'
+    
+class Products(dbase.Model):
+    id = dbase.mapped_column(dbase.Integer, primary_key=True)
+    prodname = dbase.mapped_column(dbase.String(50), nullable=False)
+    prodmodel = dbase.mapped_column(dbase.String(50), nullable=False)
+    prodstock = dbase.mapped_column(dbase.String(50), nullable=False)
+    prodbrand = dbase.mapped_column(dbase.String(50), nullable=False)
+    prodweight = dbase.mapped_column(dbase.Integer, nullable=False)
+    prodprice = dbase.mapped_column(dbase.Integer, nullable=False)
+    prodsold = dbase.mapped_column(dbase.Integer, dbase.ForeignKey('customer.id'), nullable=False)
+
+    prodget = dbase.relationship('Customer', backref=dbase.backref('customer_prodnames', lazy=True))
+
+    def __str__(self):
+        return f'"{self.prodname}" by {self.prodsold.username}'
