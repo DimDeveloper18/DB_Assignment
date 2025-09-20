@@ -1,3 +1,5 @@
+                #  Flask libraries
+
 from statistics import median, mean
 import os
 from flask import Flask, flash, render_template, request, url_for, redirect
@@ -22,6 +24,8 @@ login_manager.login_view = "login_page"
 with app.app_context():
     dbase.init_app(app)
     dbase.create_all()
+
+                #  Login/Register/Logout routes
 
 @login_manager.user_loader
 def load_user(user):
@@ -93,9 +97,13 @@ def logout_form():
 def basket_page():
     return render_template("basket.html")
 
+                           # Tools page route
+
 @app.route("/tools", methods=["GET"])
 def tools_page():
     return render_template("tools.html", comments=CustomerComment.query.all())
+
+                           #   Comments routes
 
 @app.route("/contact")
 def contact_page():
@@ -155,6 +163,8 @@ def delcom(comment_id):
     dbase.session.delete(comment_body)
     dbase.session.commit()
     return redirect(url_for("tools_page"))
+
+                            #   Delivery page route
 
 @app.route("/delivery")
 def delivery_page():
